@@ -28,6 +28,24 @@ router.get("/search", (req, res, next) => {
   );
 });
 
+//根据id查询
+router.get("/id", (req, res, next) => {
+  id = req.query.id;
+  sql.query(
+    `select * from uni_goods where id=${id}`,
+    (error, result, fields) => {
+      if (error) {
+        // throw error
+        console.error(error);
+        return;
+      }
+      return res.send({
+        code: 0,
+        data: result,
+      });
+    }
+  );
+});
 //列表展示
 router.get("/list", (req, res, next) => {
   res.json({
